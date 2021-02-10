@@ -1,23 +1,11 @@
 package appointmentsystem;
 
-public class AccountSystem {
-    public void deleteUser(){
-        
-    }
-    
-    public void login(){
-        
-    }
-    
-    public void logout(){
-        
-    }
-    
-    public void addDoctor(){
-        
-    }
-    
-    public void editUser(){
-        
-    }
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
+public interface AccountSystem { 
+    public void addPatient(int id, String name, String role, String email, String contact) throws FileNotFoundException, IOException;
+    public void addDoctor(int id, String name, String role, String email, String password, String contact) throws FileNotFoundException, IOException;
+    public void addAdmin(int id, String name, String role, String email, String password, String contact) throws FileNotFoundException, IOException;
+    public boolean check_duplicate(String name, String email);
 }

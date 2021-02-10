@@ -11,9 +11,10 @@ import javax.swing.border.EmptyBorder;
 
 public class MainPage extends JFrame implements ActionListener {
     protected static MainPage main_page = new MainPage();
-    private static JMenu report, account, appointment, myAccount;
+    private static Button report, user, appointment, myAccount;
     private static JMenuBar menu;
     private static Button logout;
+    private Individual_Profile profile;
     
     public MainPage(){
         // main panel settings
@@ -36,31 +37,33 @@ public class MainPage extends JFrame implements ActionListener {
         JLabel show_user = new JLabel(MainSystem.login_user.getRole().toUpperCase() + " : " + MainSystem.login_user.getName()); 
         show_user.setBorder(new EmptyBorder(5, 5, 5, 5));
         
-        logout = new Button("Logout");
+        logout = new Button("Logout"); 
         
         // create menu of menubar
-        report = new JMenu("Report");
-        account = new JMenu("Account");
-        appointment = new JMenu("Appointment");
-        myAccount = new JMenu("My Account");
-         
+        report = new Button("Report");
+        user = new Button("Add User");
+        appointment = new Button("Appointment");
+        myAccount = new Button("My Account");
+        
+        bottom.add(show_user);
+        bottom.add(logout);
+        
         // add menu to menubar depends on role
         if(MainSystem.login_user.getRole().equals("doctor")){ 
+            profile = new Individual_Profile();
             menu.add(myAccount);
             menu.add(appointment);
         }
         else if(MainSystem.login_user.getRole().equals("admin")){
-            menu.add(account);
+            menu.add(user);
             menu.add(report);
             menu.add(appointment);
         }
         
-        bottom.add(show_user);
-        bottom.add(logout);
         add(bottom, BorderLayout.SOUTH);
         
         report.addActionListener(this);
-        account.addActionListener(this);
+        user.addActionListener(this);
         appointment.addActionListener(this);
         myAccount.addActionListener(this);
         logout.addActionListener(this);
@@ -73,6 +76,12 @@ public class MainPage extends JFrame implements ActionListener {
             
             main_page.setVisible(false);
             MainSystem.login.setVisible(true);
+        }
+        else if(e.getSource() == user){
+            MainSystem.register.setVisible(true);
+        }
+        else if(e.getSource() == myAccount){
+            profile.setVisible(true);
         }
     }
 }

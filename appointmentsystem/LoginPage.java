@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent; 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -42,13 +43,13 @@ public class LoginPage extends JFrame implements ActionListener {
         login = new Button("Login");
         login.setBackground(new Color(51, 255, 153)); 
         
-        JPanel registerPanel = new JPanel(new GridLayout(1, 2));
-        JLabel register = new JLabel("Don't have a account ?");
-        registerButton = new Button("Register");
-        registerPanel.add(register);
-        registerPanel.add(registerButton);
+//        JPanel registerPanel = new JPanel(new GridLayout(1, 2));
+//        JLabel register = new JLabel("Don't have a account ?");
+//        registerButton = new Button("Register");
+//        registerPanel.add(register);
+//        registerPanel.add(registerButton);
         
-        JPanel panel = new JPanel(new GridLayout(8, 2)); 
+        JPanel panel = new JPanel(new GridLayout(6, 2)); 
         panel.setBorder(new EmptyBorder(20, 20, 20, 20));
         panel.add(username);
         panel.add(userName);
@@ -56,14 +57,14 @@ public class LoginPage extends JFrame implements ActionListener {
         panel.add(passWord); 
         panel.add(new JLabel());
         panel.add(login);
-        panel.add(new JLabel());
-        panel.add(registerPanel);
+//        panel.add(new JLabel());
+//        panel.add(registerPanel);
         
         add(title, BorderLayout.NORTH);
         add(panel, BorderLayout.CENTER);
         setVisible(true);
         
-        registerButton.addActionListener(this);
+//        registerButton.addActionListener(this);
         login.addActionListener(this);
     }
     
@@ -77,7 +78,7 @@ public class LoginPage extends JFrame implements ActionListener {
             for(int i=0; i<MainSystem.all_user.size(); i++){ 
                 selected = MainSystem.all_user.get(i);
                  
-                if(selected.getName().equals(userName.getText()) && selected.getPassword().equals(String.valueOf(passWord.getPassword()))){
+                if(selected.login(selected.getName(), selected.getPassword(), userName.getText(), String.valueOf(passWord.getPassword()))){
                     System.out.println(userName.getText() + " : " + String.valueOf(passWord.getPassword()));
                     
                     MainSystem.login_user = selected;
@@ -89,6 +90,6 @@ public class LoginPage extends JFrame implements ActionListener {
                     MainSystem.login.setVisible(false);
                 }
             }
-        } 
+        }
     }
 }

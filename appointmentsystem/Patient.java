@@ -3,8 +3,8 @@ package appointmentsystem;
 public class Patient extends User {
     private String contact;
 
-    public Patient(int id, String name, String role, String email, String password, String contact) {
-        super(id, name, role, email, password); 
+    public Patient(int id, String name, String role, String email, String contact) {
+        super(id, name, role, email); 
         this.contact = contact;
     }
 

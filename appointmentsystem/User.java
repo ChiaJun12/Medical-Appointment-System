@@ -6,15 +6,32 @@ public class User {
     protected String role;
     protected String email;
     protected String password;
+    protected String contact;
     
-    public User(int id, String name, String role, String email, String password){
+    public User(int id, String name, String role, String email, String password, String contact){
         this.id = id;
         this.name = name;
         this.role = role;
         this.email = email;
         this.password = password;
+        this.contact = contact;
     }
 
+    public User(int id, String name, String role, String email){
+        this.id = id;
+        this.name = name;
+        this.role = role;
+        this.email = email;
+    }
+
+    public String getContact() {
+        return contact;
+    }
+
+    public void setContact(String contact) {
+        this.contact = contact;
+    } 
+    
     public int getId() {
         return id;
     }
@@ -53,6 +70,10 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+    
+    public boolean login(String username, String password, String enteredUsername, String enteredPassword){
+        return (username.equals(enteredUsername) && password.equals(enteredPassword));
     }
     
     @Override
